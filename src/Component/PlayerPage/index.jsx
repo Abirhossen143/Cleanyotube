@@ -18,51 +18,43 @@ const PlayerPage = ({ playlists }) => {
   };
 
   return (
-    <Container sx={{ my: 5 }}>
+    <Grid
+      spacing={2}
+      sx={{
+        display: "flex",
+        height: "100vh",
+      }}
+    >
+      <Grid
+        sx={{
+          flex: 0.6,
+          overflowY: "auto",
+        }}
+      >
+        <Grid sx={{ p: 2 }}>
+          {CurrentPlay.playlistItems.map((items) => (
+            <PlaylistVideo
+              thumbnail={items.thumbnail}
+              title={items.title}
+              handleVideoClick={handleVideoClick}
+              content={items.contentDetails}
+            />
+          ))}
+        </Grid>
+      </Grid>
       <Grid
         sx={{
           display: "flex",
-          height: "100vh",
+          flexDirection: "column",
           overflow: "hidden",
+          flex: 1.5,
         }}
-        item
-        xs={12}
-        sm={6}
       >
-        <Grid
-          sx={{
-            flex: 0.9,
-
-            overflowY: "auto",
-          }}
-        >
-          <Grid sx={{ p: 2 }} xs={6} sm={2}>
-            {CurrentPlay.playlistItems.map((items) => (
-              <PlaylistVideo
-                thumbnail={items.thumbnail}
-                title={items.title}
-                handleVideoClick={handleVideoClick}
-                content={items.contentDetails}
-              />
-            ))}
-          </Grid>
-        </Grid>
-        <Grid
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            overflow: "hidden",
-            flex: 1.5,
-          }}
-          xs={6}
-          sm={2}
-        >
-          <Box sx={{ p: 2 }}>
-            <Videoplayer data={data} />
-          </Box>
-        </Grid>
+        <Box sx={{ p: 2 }}>
+          <Videoplayer data={data} />
+        </Box>
       </Grid>
-    </Container>
+    </Grid>
   );
 };
 export default PlayerPage;
