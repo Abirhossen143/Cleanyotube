@@ -8,6 +8,7 @@ import { Box, Button, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useStoreActions } from "easy-peasy";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const PlaylistCardItem = ({
   playlistThumbnail,
@@ -27,7 +28,7 @@ const PlaylistCardItem = ({
     );
 
     if (alreadyExist) {
-      alert("This Already Fav");
+      toast("This Already Fav");
       return;
     }
     FavlistAction.Addfav(item);
@@ -39,7 +40,7 @@ const PlaylistCardItem = ({
     );
 
     if (alreadyExistRec) {
-      alert("This Already in Recent");
+      toast("This Already in Recent");
       return;
     }
     RecentlistAction.AddRecent(item);

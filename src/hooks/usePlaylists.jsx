@@ -25,23 +25,10 @@ const usePlaylists = () => {
     Playlistaction.getPlaylist(playlistId);
   };
 
-  const addToRecent = (playlistId) => {
-    setState((prev) => ({
-      ...prev,
-      recentPlaylists: [...prev, playlistId],
-    }));
-  };
-
-  const getPlaylistsByIds = (ids = []) => {
-    return ids.map((id) => state.playlists[id]);
-  };
   return {
     playlists: playlistState.data,
-    // favorites: getPlaylistsByIds(FavlistState.items),
-    recentPlaylists: getPlaylistsByIds(state.recentPlaylists),
+
     getPlaylistById,
-    addToRecent,
-    // addtoFavorites,
   };
 };
 

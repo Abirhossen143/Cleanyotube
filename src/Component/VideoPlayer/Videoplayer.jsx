@@ -9,7 +9,9 @@ const Videoplayer = ({ data }) => {
     height: "500",
     width: "100%",
     playerVars: {
+      autoplay: 1,
       modestbranding: 1,
+      controls: 1,
       rel: 0,
     },
   };

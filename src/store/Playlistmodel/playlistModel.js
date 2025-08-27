@@ -1,5 +1,6 @@
 import { action, persist, thunk } from "easy-peasy";
 import getPlaylist from "../../api";
+import { toast, ToastContainer } from "react-toastify";
 
 const playlistModel = persist({
   data: {},
@@ -18,7 +19,7 @@ const playlistModel = persist({
   getPlaylist: thunk(
     async ({ addPlaylist, setError, setLoading }, playlistId, { getState }) => {
       if (getState().data[playlistId]) {
-        return;
+        toast("Already Add This Playlist");
       }
       setLoading(true);
       try {

@@ -6,14 +6,40 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const PlaylistForm = ({ open, handleClose, getPlaylistId }) => {
   const [state, setState] = useState("");
+  const extractPlaylistId = (url) => {
+    if (
+      !url.includes("youtube.com") &&
+      !url.includes("youtu.be") &&
+      !url.includes("/")
+    ) {
+      return url;
+    }
+    const regex = /[&?]list=([^&]+)/;
+    const match = url.match(regex);
+    if (match && match[1]) {
+      return match[1];
+    }
+    if (url.includes("youtu.be")) {
+      const urkObj = new URL(url);
+      const listParam = urkObj.searchParams.get("list");
+      if (listParam) return listParam;
+    }
+    return null;
+  };
+  const extractedPlaylistId = extractPlaylistId(state);
 
   const handleSubmit = () => {
     // TODO: handle url later
     if (!state) {
-      alert("Invalid State");
+      toast("Please Input PlaylistId Or Link");
+    } else if (extractedPlaylistId) {
+      getPlaylistId(extractedPlaylistId);
+      setState("");
+      handleClose();
     } else {
       getPlaylistId(state);
       setState("");

@@ -13,7 +13,7 @@ const PlaylistVideo = ({ thumbnail, title, handleVideoClick, content }) => {
     <Card>
       <CardMedia component="img" image={thumbnail.url} alt={title} />
       <CardContent>
-        <Typography variant="h6" color="text.primary">
+        <Typography variant="h7" color="text.primary">
           {`${title.length > 50 ? title.substr(0, 50) + "..." : title}`}
         </Typography>
       </CardContent>
